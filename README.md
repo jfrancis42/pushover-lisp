@@ -67,13 +67,14 @@ When an emergency message is sent, the user must acknowledge the
 message (or it can time out or be canceled). In order to check the
 status of the acknowledgement, use (check-receipt ...) with the token
 and the receipt ID. This returns an association list with the various
-values returned by Pushover. Example:
+values returned by Pushover. Pushover requests that you wait at least
+five seconds between each check, minimum. Example:
 
 ```
 CL-USER> (pushover:check-receipt "aqp4BUJysZ7jqK7r7D2P5S2qdznxkv" "r3daccpy58atz545p4h9rffdxjqpnv")
 ((:STATUS . 1) (:ACKNOWLEDGED . 1) (:ACKNOWLEDGED--AT . 1472702768)
  (:ACKNOWLEDGED--BY . "uMrhoy99Nn8GnhnhQaQeAvEVQYedvf")
- (:ACKNOWLEDGED--BY--DEVICE . "itard") (:LAST--DELIVERED--AT . 1472702728)
+ (:ACKNOWLEDGED--BY--DEVICE . "iphone") (:LAST--DELIVERED--AT . 1472702728)
  (:EXPIRED . 0) (:EXPIRES--AT . 1472789038) (:CALLED--BACK . 0)
  (:CALLED--BACK--AT . 0) (:REQUEST . "bab3dcf55d01b4b66181d1096074c38a"))
 CL-USER>
