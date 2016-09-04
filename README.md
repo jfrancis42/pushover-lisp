@@ -1,5 +1,4 @@
-##pushover-lisp
-
+# pushover-lisp
 pushover.lisp is a library for sending Pushover messages using the
 Pushover API from Common Lisp. The documentation for the API is
 available at https://pushover.net/api
