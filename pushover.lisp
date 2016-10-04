@@ -2,13 +2,6 @@
 
 (in-package #:pushover)
 
-(defparameter *pouser* "uMrhoy3WNn8GnhnhQGQeAvEVQYe9vf")
-(defparameter *potoken* "aqp4BUJysZ5jqK7r7D1P5s2QDZNxkv")
-
-(defun bytes-to-ascii (bytelist)
-  "Turn a list of bytes into string."
-  (map 'string #'code-char bytelist))
-
 (defun join (stuff separator)
   "Join a list of strings with a separator (like ruby string.join())."
   (with-output-to-string (out)
@@ -72,7 +65,7 @@
 							 :method :post
 							 :content-type "application/x-www-form-urlencoded"
 							 :content (alist-encoder payload)))))
-      (let ((pushover-reply (json:decode-json-from-string (bytes-to-ascii (first val)))))
+      (let ((pushover-reply (json:decode-json-from-string (babel:octets-to-string (first val)))))
 	(if (= (cdr (assoc :status pushover-reply)) 1)
 	    (if (equal priority :emergency)
 		(cdr (assoc :receipt pushover-reply))
@@ -86,7 +79,7 @@
 							 :method :post
 							 :content-type "application/x-www-form-urlencoded"
 							 :content (alist-encoder payload)))))
-      (let ((pushover-reply (json:decode-json-from-string (bytes-to-ascii (first val)))))
+      (let ((pushover-reply (json:decode-json-from-string (babel:octets-to-string (first val)))))
 	(if (= (cdr (assoc :status pushover-reply)) 1)
 	    t
 	    nil)))))
@@ -100,5 +93,5 @@ details)."
 							 :method :get
 							 :content-type "application/x-www-form-urlencoded"
 							 :content (alist-encoder payload)))))
-      (let ((pushover-reply (json:decode-json-from-string (bytes-to-ascii (first val)))))
+      (let ((pushover-reply (json:decode-json-from-string (babel:octets-to-string (first val)))))
 	pushover-reply))))
