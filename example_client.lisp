@@ -4,4 +4,4 @@
 (creds:load-creds)
 
 (defun send-message (message)
-  (pushover:send-pushover (creds:get-cred "potoken") (creds:get-cred "pouser") message))
+  (pushover:send-pushover (creds:get-cred "potoken") (creds:get-cred "pouser") message :sound :bugle))
